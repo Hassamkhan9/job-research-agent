@@ -105,7 +105,7 @@ Return the results as a JSON array.`
       iteration++;
 
       const response = await groq.chat.completions.create({
-        model: 'meta-llama/llama-4-scout-17b-16e-instruct',
+        model: 'llama3-groq-70b-8192-tool-use-preview',
         messages: messages,
         tools: searchCount < 2 ? tools : undefined,
         tool_choice: searchCount < 2 ? 'auto' : undefined,
