@@ -37,11 +37,11 @@ const tools = [
     type: 'function',
     function: {
       name: 'web_search',
-      description: 'Search for job listings on the web',
+      description: 'Search the web for job listings',
       parameters: {
         type: 'object',
         properties: {
-          query: { type: 'string', description: 'Job search query' }
+          query: { type: 'string' }
         },
         required: ['query']
       }
@@ -66,9 +66,10 @@ app.post('/api/search', async (req, res) => {
   const messages = [
     {
       role: 'system',
-      content: `You are a job search assistant. Search for real job listings and return them as a JSON array.
-
-After searching, return ONLY a valid JSON array like this — no extra text, no markdown, just the array:
+      content: `You are a job search assistant with access to web_search tool. 
+Use the web_search tool to find real job listings.
+After searching, respond with ONLY a JSON array of jobs, no markdown, no explanation.
+Each job must have: title, company, location, salary, description, url, source.
 [
   {
     "title": "Job Title",
